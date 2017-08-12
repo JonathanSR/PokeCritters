@@ -1,2 +1,16 @@
-PokeCritters
-Gotta Catch em All
+<div class="container">
+  <h1 class="welcome-tag">PokeCritters</h1><br>
+  <h2 class="welcome-subheading">Gotta Catch em All</h2>
+</div>
+
+<div class="container">
+  <% @pokemon.each do |pokemon|%><br>
+    <%=image_tag(pokemon.image)%><br>
+   Name: <%=pokemon.name.capitalize%><br>
+   Weight: <%=pokemon.weight%><br>
+   Height: <%=pokemon.height%><br>
+   Type_1: <%=pokemon.type_1%><br>
+   Type:2 <%=pokemon.type_2%><br>
+  <%end%>
+</div>
+
