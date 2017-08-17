@@ -36,6 +36,7 @@ end
   context "searched the Bulbasaur object for types" do
     it "returns the second type in the array" do
       poke_data = @service.get_pokemon(1)
+      
       pokemon = Pokemon.new(poke_data)
 
       type = pokemon.check_type_1_exists(poke_data)
@@ -67,6 +68,14 @@ describe "create a collection of starters" do
         expect(bulbasaur.type_1).to eq("grass")
         expect(bulbasaur.type_2).to eq("poison")
         expect(bulbasaur.image).to be_truthy
+    end
+  end
+
+  describe "it gets the species API endpoint" do
+    it "returns the bulbasaur species API endpoint" do
+    species_url = Pokemon.find_species(1)
+    
+    expect(species_url[:"evolution-chain"]).to eq("http://pokeapi.co/api/v2/evolution-chain/")
     end
   end
 end

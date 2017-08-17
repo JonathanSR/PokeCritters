@@ -40,4 +40,12 @@ class Pokemon
     end
     poke_array
   end
+
+  def self.find_species(id)
+    poke_service.get_species(id)
+  end
+
+  def find_evolutions
+
+  end
 end

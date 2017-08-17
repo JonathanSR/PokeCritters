@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 describe "User visits root page" do
-  before(:each) do
-    # pokemon_1 = Pokemon.find_bulbasaur
-  end
-
   context "sees starter list of pokemon" do
     it "clicks on pokemon and gets taken to pokemon show page" do
 
@@ -15,11 +11,11 @@ describe "User visits root page" do
       expect(page).to have_content("Bulbasaur")
       expect(page).to have_content("Squirtle")
       
-      # click_on "Bulbasaur"
+      click_on "Bulbasaur"
 
-      # expect(current_path).to eq("/charizard")
+      expect(current_path).to eq("/pokemons/bulbasaur")
 
-      # expect(page).to have_content("Charizard")
+      expect(page).to have_content("Bulbasaur")
     end
   end
 end
