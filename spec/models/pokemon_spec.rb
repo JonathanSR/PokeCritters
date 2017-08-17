@@ -75,7 +75,7 @@ describe "create a collection of starters" do
     it "returns the bulbasaur species API endpoint" do
     species_url = Pokemon.find_species(1)
     
-    expect(species_url[:"evolution-chain"]).to eq("http://pokeapi.co/api/v2/evolution-chain/")
+    expect(species_url[:evolution_chain][:url]).to eq("http://pokeapi.co/api/v2/evolution-chain/1/")
     end
   end
 end

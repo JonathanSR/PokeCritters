@@ -4,7 +4,7 @@ class PokemonsController < ApplicationController
     pokemon = params[:id]
     @show_pokemon = Pokemon.find_pokemon(pokemon)
 
-    species = Pokemon.find_species([params[:id]])
-    byebug
+    @species = Pokemon.find_species(pokemon)
+    # byebug
   end
 end

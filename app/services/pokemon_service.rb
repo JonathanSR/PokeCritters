@@ -22,6 +22,10 @@ attr_reader :connection
     parse(connection.get("evolution-chain/#{id}/"))
   end
 
+  def main_connect(url)
+    result = parse(connection.get("#{url}"))
+  end
+
   private
     def parse(response)
       JSON.parse(response.body, symbolize_names: true)
