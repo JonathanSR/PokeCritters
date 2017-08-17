@@ -30,5 +30,25 @@ describe PokemonService do
       expect(pokemon[:sprites][:front_default]).to be_truthy
     end
   end
+
+  context "finds a pokemon species" do
+    it "returns bulbasaur pokemon species" do
+      pokemon = service.get_species(1)
+
+      expect(pokemon.class).to eq(Hash)
+# byebug
+      expect(pokemon[:evolution_chain][:url]).to be_truthy
+    end
+  end
+
+  context "find the pokemon evolution chain" do
+    it "returns bulbasaurs evolution chain" do
+      pokemon = service.get_evolutions(1)
+
+      expect(pokemon[:chain][:evolves_to][0][:evolves_to][0][:species][:name]).to be_truthy
+      expect(pokemon[:chain][:evolves_to][0][:species][:name]).to be_truthy
+    end
+  end
+
 end
 

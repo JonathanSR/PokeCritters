@@ -6,11 +6,12 @@
 <div class="container">
   <% @pokemon.each do |pokemon|%><br>
     <%=image_tag(pokemon.image)%><br>
-   Name: <%=pokemon.name.capitalize%><br>
+   Name: <%=link_to pokemon.name.capitalize, pokemon_path(pokemon.id)%><br>
    Weight: <%=pokemon.weight%><br>
    Height: <%=pokemon.height%><br>
-   Type_1: <%=pokemon.type_1%><br>
-   Type:2 <%=pokemon.type_2%><br>
+   Type 1: <%=pokemon.type_1%><br>
+   Type 2: <%=pokemon.type_2%><br>
+
   <%end%>
 </div>
 

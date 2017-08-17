@@ -1,0 +1,10 @@
+<div class="container">
+  <%@species.each do |pokemon|%>
+    <%=image_tag(pokemon.image)%> </br>
+    Name: <%=pokemon.name.capitalize%> </br>
+    Weight: <%=pokemon.weight%> </br>
+    Height: <%=pokemon.height%> </br>
+    Type 1: <%=pokemon.type_1%> </br>
+    Type 2: <%=pokemon.type_2%> </rb>
+  <% end %>
+</div>

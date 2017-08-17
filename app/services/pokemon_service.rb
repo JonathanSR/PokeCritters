@@ -13,9 +13,21 @@ attr_reader :connection
     parse(connection.get("pokemon/#{id}/"))
   end
 
+
+  def get_species(id)
+    parse(connection.get("pokemon-species/#{id}/"))
+  end
+
+  def get_evolutions(id)
+    parse(connection.get("evolution-chain/#{id}/"))
+  end
+
+  def main_connect(url)
+    result = parse(connection.get("#{url}"))
+  end
+
   private
     def parse(response)
-    # byebug
       JSON.parse(response.body, symbolize_names: true)
   end
 end
