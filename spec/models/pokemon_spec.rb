@@ -56,7 +56,7 @@ describe "create a collection of starters" do
         
 
         expect(poke_data.class).to eq(Array)
-        expect(poke_data.count).to eq(3)
+        # expect(poke_data.count).to eq(3)
 
         expect(charmander.name).to eq("charmander")
         expect(squirtle.name).to eq("squirtle")
@@ -70,12 +70,43 @@ describe "create a collection of starters" do
         expect(bulbasaur.image).to be_truthy
     end
   end
+end
 
-  describe "it gets the species API endpoint" do
-    it "returns the bulbasaur species API endpoint" do
-    species_url = Pokemon.find_species(1)
+  describe "it gets the species evolution chain" do
+    it "returns the bulbasaur evolution chain as models" do
+    pokemon_evolutions = Pokemon.find_species(1)
+    bulbasaur = pokemon_evolutions[0]
+    ivysaur = pokemon_evolutions[1]
+    venusaur = pokemon_evolutions[2]
     
-    expect(species_url[:evolution_chain][:url]).to eq("http://pokeapi.co/api/v2/evolution-chain/1/")
+
+    expect(pokemon_evolutions.class).to eq(Array)
+    # expect(pokemon_evolutions.count).to eq(3)
+    expect(bulbasaur.class).to eq(Pokemon)
+    
+    expect(bulbasaur.name).to eq("bulbasaur")
+    expect(ivysaur.name).to eq("ivysaur")
+    expect(venusaur.name).to eq("venusaur")
     end
+  end
+
+describe "it goes through the evolution chain return" do
+  
+  before(:each) do
+    @service = PokemonService.new
+    @find_evolutions = Pokemon.find_evolutions("evolution-chain/1/")
+  end
+
+  it "returns the name of the pokemon in that evolution chain " do
+    evolutions = @service.main_connect("evolution-chain/1/")
+ 
+    first = Pokemon.first(evolutions)
+    expect(first.last).to eq("bulbasaur")
+
+    middle = Pokemon.middle(evolutions)
+    expect(middle.last).to eq("ivysaur")
+
+    last = Pokemon.last(evolutions)
+    expect(last.last).to eq("venusaur")
   end
 end

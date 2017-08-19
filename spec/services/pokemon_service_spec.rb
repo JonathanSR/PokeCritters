@@ -32,11 +32,11 @@ describe PokemonService do
   end
 
   context "finds a pokemon species" do
-    it "returns bulbasaur pokemon species" do
+    it "returns bulbasaur pokemon species url" do
       pokemon = service.get_species(1)
 
       expect(pokemon.class).to eq(Hash)
-# byebug
+#
       expect(pokemon[:evolution_chain][:url]).to be_truthy
     end
   end

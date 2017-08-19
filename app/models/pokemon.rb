@@ -27,6 +27,7 @@ class Pokemon
   end
 
   def check_type_1_exists(poke_data)
+  #  poke_data[:types][1] && poke_data[:types][1][:type][:name]
     if !poke_data[:types][1].nil?
       poke_data[:types][1][:type][:name]
     else
@@ -35,12 +36,11 @@ class Pokemon
   end
 
   def self.find_starters
-    poke_array = [ ]
     [1,4,7].each do |id|
       data = poke_service.get_pokemon(id)
-      poke_array.push(Pokemon.new(data))
+      (@poke_array ||= []).push(Pokemon.new(data))
     end
-    poke_array
+    @poke_array
   end
 
   def self.find_species(id)
@@ -49,29 +49,41 @@ class Pokemon
     find_evolutions(data)
   end
 
+
+
   def self.find_evolutions(url)
-    critters = []
+    @critters = []
     evolutions = poke_service.main_connect(url)
+    first(evolutions)
+    middle(evolutions)
+    last(evolutions)
+    species_array(@critters)
+  end
+
+
+  def self.species_array(critters)
+    critters.each do |criter|
+      data = poke_service.get_pokemon(criter)
+      (@critters_array ||= []).push(Pokemon.new(data))
+    end
+    @critters_array
+  end
+
+  def self.first(evolutions)
     if !evolutions[:chain][:species].nil?
-      first = critters.push(evolutions[:chain][:species][:name])
-    else
+      @critters.push(evolutions[:chain][:species][:name])
     end
+  end 
 
+  def self.middle(evolutions)
     if !evolutions[:chain][:evolves_to][0].nil?
-      middle = critters.push(evolutions[:chain][:evolves_to][0][:species][:name])
-    else
+      @critters.push(evolutions[:chain][:evolves_to][0][:species][:name])
     end
+  end
 
+  def self.last(evolutions)
     if !evolutions[:chain][:evolves_to][0][:evolves_to][0].nil?
-      final = critters.push(evolutions[:chain][:evolves_to][0][:evolves_to][0][:species][:name])
-    else
+      @critters.push(evolutions[:chain][:evolves_to][0][:evolves_to][0][:species][:name])
     end
-      
-      poke_array = []
-      critters.each do |critter|
-        data = poke_service.get_pokemon(critter)
-        poke_array.push(Pokemon.new(data))
-      end
-      poke_array
   end
 end
