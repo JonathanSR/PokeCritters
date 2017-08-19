@@ -13,7 +13,7 @@ describe "User visits root page" do
       
       click_on "Bulbasaur"
 
-      expect(current_path).to eq("/pokemons/bulbasaur")
+      expect(current_path).to eq("/pokemons/1")
 
       expect(page).to have_content("Bulbasaur")
     end

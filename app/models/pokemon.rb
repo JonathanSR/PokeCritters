@@ -36,12 +36,11 @@ class Pokemon
   end
 
   def self.find_starters
-    poke_array = [ ]
     [1,4,7].each do |id|
       data = poke_service.get_pokemon(id)
-      poke_array.push(Pokemon.new(data))
+      (@poke_array ||= []).push(Pokemon.new(data))
     end
-    poke_array
+    @poke_array
   end
 
   def self.find_species(id)
@@ -63,12 +62,11 @@ class Pokemon
 
 
   def self.species_array(critters)
-    poke_array = []
     critters.each do |criter|
       data = poke_service.get_pokemon(criter)
-      poke_array.push(Pokemon.new(data))
+      (@critters_array ||= []).push(Pokemon.new(data))
     end
-    poke_array
+    @critters_array
   end
 
   def self.first(evolutions)
