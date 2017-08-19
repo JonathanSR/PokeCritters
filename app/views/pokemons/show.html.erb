@@ -2,9 +2,9 @@
   <%@species.each do |pokemon|%>
     <%=image_tag(pokemon.image)%> </br>
     Name: <%=pokemon.name.capitalize%> </br>
-    Weight: <%=pokemon.weight%> </br>
-    Height: <%=pokemon.height%> </br>
+    Weight: <%=pokemon.weight%>lbs </br>
+    Height: <%=pokemon.height%>in </br>
     Type 1: <%=pokemon.type_1%> </br>
-    Type 2: <%=pokemon.type_2%> </rb>
+    Type 2: <%=pokemon.type_2%> </br>
   <% end %>
 </div>
