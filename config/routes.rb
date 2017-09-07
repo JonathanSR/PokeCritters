@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :welcome, only: [:index]
   resources :pokemons, only: [:show]
 
-  resources :users, only: [ :index]
+  resources :users, only: [:index, :new, :create]
 end
